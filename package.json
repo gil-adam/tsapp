@@ -1,0 +1,41 @@
+{
+  "name": "tsapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Mohammad-Faisal/nodejs-typescript-skeleton.git",
+  "license": "MIT",
+  "devDependencies": {
+    "@tsconfig/node16": "^16.1.1",
+    "@types/body-parser": "^1.19.5",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.5",
+    "@types/passport-jwt": "^3.0.13",
+    "@types/uuid": "^9.0.7",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev:apt": "ts-node-dev --respawn src/appointmentService/index.ts",
+    "dev:debug:apt": "ts-node-dev --transpile-only --respawn --inspect=4321 --project tsconfig.json src/appointmentService/index.ts",
+    "serve:apt": "node dist/appointmentService/index.js",
+    "dev:gateway": "ts-node-dev --respawn src/gatewayService/index.ts",
+    "dev:debug:gateway": "ts-node-dev --transpile-only --respawn --inspect=4321 --project tsconfig.json src/gatewayService/index.ts",
+    "serve:gateway": "node dist/gatewayService/index.js"
+  },
+  "dependencies": {
+    "@azure/data-tables": "^13.2.2",
+    "@azure/identity": "^4.0.0",
+    "@azure/storage-blob": "^12.17.0",
+    "@types/sha256": "^0.2.2",
+    "axios": "^1.6.3",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "sha256": "^0.2.0",
+    "uuid": "^9.0.1"
+  }
+}
