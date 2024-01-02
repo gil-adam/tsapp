@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: gateway-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: gateway-service
@@ -16,14 +16,14 @@ spec:
         - name: gateway-service
           image: tsapp189.azurecr.io/gatewayserver:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 3001
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: appointment-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: appointment-service
@@ -36,4 +36,4 @@ spec:
         - name: appointment-service
           image: tsapp189.azurecr.io/aptserver:latest
           ports:
-            - containerPort: 3001
+            - containerPort: 3000

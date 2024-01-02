@@ -6,12 +6,14 @@ import sha256 from "sha256";
 import jwt from "jsonwebtoken";
 import { applyPassportStrategy } from "./auth";
 import { initTableClient, TableNames } from "../utils";
+import morgan from "morgan";
 
 require("dotenv").config();
 
 const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(morgan("combined"));
 applyPassportStrategy(passport);
 
 // Azure storage clients
@@ -33,7 +35,7 @@ app.get("/", async (req: Request, res: Response): Promise<Response> => {
       response: response.data,
     });
   } catch {
-    return res.status(400).send({
+    return res.status(200).send({
       message: "Failed to get response from appointment service",
     });
   }
@@ -121,10 +123,12 @@ app.post(
     try {
       const response = await aptService.post(
         "/appointment/" + req.params.user,
+        null,
         { params: req.query }
       );
       return res.status(200).json(response.data);
-    } catch {
+    } catch (err: any) {
+      console.log(err);
       return res.status(400).send({
         message: "Failed to create appointment in appointment service",
       });

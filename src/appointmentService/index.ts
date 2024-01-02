@@ -1,11 +1,13 @@
 import express, { Application, Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
+import morgan from "morgan";
 require("dotenv").config();
 
 import { initTableClient, TableNames } from "../utils";
 const { odata } = require("@azure/data-tables");
 
 const app: Application = express();
+app.use(morgan("combined"));
 const tableClient = initTableClient(TableNames.appointments);
 
 // Routes
@@ -37,6 +39,7 @@ app.get(
 app.post(
   "/appointment/:user",
   async (req: Request, res: Response): Promise<Response> => {
+    console.log(req.query);
     if (
       typeof req.query.startDate !== "string" ||
       typeof req.query.endDate !== "string"

@@ -7,11 +7,11 @@ RUN yarn build
 FROM base as gatewayServer
 WORKDIR /usr/src/app1
 COPY --from=base /usr/src/app .
-EXPOSE 3000
+EXPOSE 3001
 CMD yarn serve:gateway
 
 FROM base as aptServer
 WORKDIR /usr/src/app2
 COPY --from=base /usr/src/app .
-EXPOSE 3001
+EXPOSE 3000
 CMD yarn serve:apt
