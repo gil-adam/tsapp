@@ -21,7 +21,9 @@
     "serve:apt": "node dist/appointmentService/index.js",
     "dev:gateway": "ts-node-dev --respawn src/gatewayService/index.ts",
     "dev:debug:gateway": "ts-node-dev --transpile-only --respawn --inspect=4321 --project tsconfig.json src/gatewayService/index.ts",
-    "serve:gateway": "node dist/gatewayService/index.js"
+    "serve:gateway": "node dist/gatewayService/index.js",
+    "buildimage:gateway": "docker build --target gatewayServer -t tsapp189.azurecr.io/gatewayserver .",
+    "buildimage:apt": "docker build --target aptServer -t tsapp189.azurecr.io/aptserver ."
   },
   "dependencies": {
     "@azure/data-tables": "^13.2.2",

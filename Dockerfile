@@ -10,7 +10,7 @@ COPY --from=base /usr/src/app .
 EXPOSE 3000
 CMD yarn serve:gateway
 
-FROM base as appointmentServer
+FROM base as aptServer
 WORKDIR /usr/src/app2
 COPY --from=base /usr/src/app .
 EXPOSE 3001
