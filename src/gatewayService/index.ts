@@ -26,11 +26,17 @@ const aptService = axios.create({
 
 // Routes
 app.get("/", async (req: Request, res: Response): Promise<Response> => {
-  const response = await aptService.get("/");
-  return res.status(200).json({
-    message: "Hello Gateway!",
-    response: response.data,
-  });
+  try {
+    const response = await aptService.get("/");
+    return res.status(200).json({
+      message: "Hello Gateway!",
+      response: response.data,
+    });
+  } catch {
+    return res.status(400).send({
+      message: "Failed to get response from appointment service",
+    });
+  }
 });
 
 app.post("/signup", async (req: Request, res: Response): Promise<Response> => {
